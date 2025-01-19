@@ -1,0 +1,41 @@
+<div class="input-group mb-3">
+	<input [(ngModel)]="formName" (ngModelChange)="filter()" type="text" class="form-control" placeholder="Nome" aria-label="Name">
+	<span [innerText]="'@'" class="input-group-text"></span>
+	<input [(ngModel)]="formEmail" (ngModelChange)="filter()" type="text" class="form-control" placeholder="Email" aria-label="Email">
+	<span [innerText]="'☲'" class="input-group-text"></span>
+	<input [(ngModel)]="formBody" (ngModelChange)="filter()" type="text" class="form-control" placeholder="Body" aria-label="Body">
+</div>
+
+<div class="d-flex justify-content-between p-2">
+	<ngb-pagination [maxSize]="2" [collectionSize]="collectionSize!" [(page)]="page!" [pageSize]="pageSize!"
+		(pageChange)="refreshPublications()">
+	</ngb-pagination>
+
+	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshPublications()">
+		<option [ngValue]="15">15 itens por página</option>
+		<option [ngValue]="20">20 itens por página</option>
+		<option [ngValue]="25">25 itens por página</option>
+	</select>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">PostId</th>
+			<th scope="col">Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">Body</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (publication of displayedPublications; track publication.name) {
+		<tr>
+			<td>{{ publication.postId | number }}</td>
+			<td>{{ publication.name }}</td>
+			<td>{{ publication.email }}</td>
+			<td>{{ publication.body }}</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
