@@ -61,4 +61,12 @@ export class BuscarPubComponent implements OnInit {
 
     this.refreshPublications();
   }
+
+  clear() {
+    this.formName = "";
+    this.formEmail = "";
+    this.formBody = "";
+    this.filteredPublications = this.publications;
+    this.refreshPublications();
+  }
 }
