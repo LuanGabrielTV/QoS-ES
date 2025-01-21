@@ -1,25 +1,50 @@
-	<div class="input-group mb-3">
-		<input [(ngModel)]="formName" type="text" class="form-control" placeholder="Nome" aria-label="Name">
-		<span [innerText]="'@'" class="input-group-text"></span>
-		<input [(ngModel)]="formEmail" type="text" class="form-control" placeholder="Email" aria-label="Email">
-		<span [innerText]="'☲'" class="input-group-text"></span>
-		<input [(ngModel)]="formBody" type="text" class="form-control" placeholder="Body" aria-label="Body">
-		<button type="button" class="btn btn-primary" (click)="filter()">Pesquisar</button>
-		<button type="button" class="btn btn-danger" *ngIf="this.formName.length != 0 || this.formEmail.length != 0 || this.formBody.length != 0" (click)="clear()">X</button>
+<nav class="navbar p-4  navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<h4><strong>Buscar publicação</strong></h4>
 	</div>
+  </nav>
+<div class="d-flex justify-content-center">
+	<form class="d-flex flex-column">
+		<div class="row">
+			<div class="col-md-3 mb-3">
+				<input [(ngModel)]="formName" type="text" name="Name" class="form-control" placeholder="Nome"
+					aria-label="Name">
+			</div>
+			<div class="col-md-3 mb-3">
+				<input [(ngModel)]="formEmail" type="text" name="Email" class="form-control" placeholder="Email"
+					aria-label="Email">
+			</div>
+			<div class="col-md-5 mb-3">
+				<input [(ngModel)]="formBody" type="text" name="Body" class="form-control" placeholder="Body"
+					aria-label="Body">
+			</div>
+			<div class="col-md-1">
+				<div class="d-flex flex-nowrap">
+					<button type="button" class="btn btn-primary" (click)="filter()"><i
+							class="bi bi-search"></i></button>
+					<button type="button" class="btn btn-light"
+						*ngIf="this.formName.length != 0 || this.formEmail.length != 0 || this.formBody.length != 0"
+						(click)="clear()"><i class="bi bi-x"></i></button>
+				</div>
 
-	<div class="d-flex justify-content-between p-2">
-		<ngb-pagination [maxSize]="2" [collectionSize]="collectionSize!" [(page)]="page!" [pageSize]="pageSize!"
-			(pageChange)="refreshPublications()">
-		</ngb-pagination>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="d-flex flex-wrap justify-content-between p-2">
+	<ngb-pagination [maxSize]="2" [collectionSize]="collectionSize!" [(page)]="page!" [pageSize]="pageSize!"
+		(pageChange)="refreshPublications()">
+	</ngb-pagination>
 
-		<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshPublications()">
-			<option [ngValue]="15">15 itens por página</option>
-			<option [ngValue]="20">20 itens por página</option>
-			<option [ngValue]="25">25 itens por página</option>
-		</select>
-	</div>
-
+	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshPublications()">
+		<option [ngValue]="5">5 itens por página</option>
+		<option [ngValue]="10">10 itens por página</option>
+		<option [ngValue]="15">15 itens por página</option>
+		<option [ngValue]="20">20 itens por página</option>
+		<option [ngValue]="25">25 itens por página</option>
+	</select>
+</div>
+<div class="table-responsive">
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -35,9 +60,9 @@
 				<td>{{ publication.postId | number }}</td>
 				<td>{{ publication.name }}</td>
 				<td>{{ publication.email }}</td>
-				<td>{{ publication.body }}</td>
+				<td>{{ publication.body?.substring(0,25) }} ...</td>
 			</tr>
 			}
 		</tbody>
 	</table>
-
+</div>
