@@ -20,11 +20,11 @@
 			</div>
 			<div class="col-md-1">
 				<div class="d-flex flex-nowrap">
-					<button type="button" class="btn btn-primary" (click)="filter()"><i
+					<button type="button" class="btn btn-primary" (click)="filterPublications()"><i
 							class="bi bi-search"></i></button>
 					<button type="button" class="btn btn-light"
 						*ngIf="this.formName.length != 0 || this.formEmail.length != 0 || this.formBody.length != 0"
-						(click)="clear()"><i class="bi bi-x"></i></button>
+						(click)="clearFilters()"><i class="bi bi-x"></i></button>
 				</div>
 
 			</div>
@@ -57,10 +57,10 @@
 		<tbody>
 			@for (publication of displayedPublications; track publication.name) {
 			<tr>
-				<td>{{ publication.postId | number }}</td>
+				<td>{{ publication.id | number }}</td>
 				<td>{{ publication.name }}</td>
 				<td>{{ publication.email }}</td>
-				<td>{{ publication.body?.substring(0,25) }} ...</td>
+				<td>{{ publication.body}} ...</td>
 			</tr>
 			}
 		</tbody>
