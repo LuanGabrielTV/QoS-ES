@@ -6,6 +6,7 @@
 table {
     margin: 1%;
     width: 98%;
+
 }
 
 body {
@@ -20,9 +21,11 @@ form {
     padding: .5%;
 }
 
-search-bar {
-    width: 70;
+.search-bar {
+    margin-top: 10px;
+    width: 70%;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
+    // -webkit-box-shadow: 31px 16px 29px -19px rgba(66, 68, 90, 1);
+    // -moz-box-shadow: 31px 16px 29px -19px rgba(66, 68, 90, 1);
+    // box-shadow: 31px 16px 29px -19px rgba(66, 68, 90, 1);
 }
