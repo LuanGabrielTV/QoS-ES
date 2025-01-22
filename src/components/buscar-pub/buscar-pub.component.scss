@@ -1,21 +1,28 @@
 .input-group {
-    margin:1%;
+    margin: 1%;
     width: 98%;
 }
 
-table{
-    margin:1%;
+table {
+    margin: 1%;
     width: 98%;
 }
 
-body{
+body {
     scrollbar-width: none;
 }
 
-.d-flex{
+.d-flex {
     margin: .5%;
 }
 
-form{
+form {
     padding: .5%;
+}
+
+search-bar {
+    width: 70;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
 }

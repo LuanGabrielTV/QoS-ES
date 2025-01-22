@@ -14,7 +14,7 @@ export class PublicationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPublications(){
+  getPublications() {
     return this.httpClient.get<Publication[]>(this.url);
   }
 

@@ -4,6 +4,7 @@ import { PublicationService } from '../../services/publication.service';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-buscar-pub',
@@ -30,10 +31,21 @@ export class BuscarPubComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.publicationService.getPublications().subscribe((data) => {
-      this.publications = data;
-      this.filteredPublications = this.publications;
-      this.refreshPublications();
+    this.publicationService.getPublications().subscribe({
+      next: (data) => {
+        this.publications = data;
+        this.filteredPublications = this.publications;
+        this.refreshPublications();
+      },
+      error: (err) => {
+        console.error('Erro ao buscar publicações:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: 'Ocorreu um erro ao carregar as publicações. Por favor, tente novamente mais tarde.',
+          confirmButtonText: 'Ok',
+        });
+      }
     });
   }
 
